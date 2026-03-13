@@ -1,127 +1,72 @@
+# Stock-Market-Analysis-System
+A Java-based stock market analysis system that processes historical stock data using red-black trees for efficient data organization and retrieval.
 
-Stock Market Analysis System
-A Java-based application that processes historical stock data using a Red-Black Tree for efficient storage and retrieval. The system provides a menu-driven interface to analyze stock performance, compute statistics, and compare the execution time of four sorting algorithms (Bubble, Selection, Quick, Merge) on large datasets.
-More Updates Coming Soon !!!...
-Features
-Efficient Data Storage
-Utilizes a custom Red-Black Tree implementation with keys formed by concatenating stock symbol and date (symbol_date). Each node stores a StockData object containing:
+The system will analyze various sorting algorithms’ performance while handling large datasets of stock information.
+Instructions:
+Follow prompts for user inputs, especially the pattern for user date inputs is YYYY-MM-DD, e.g. (2024-11-19).
+Reads in the .csv file with the same date format provided in the all_stocks_5yr file for the project, (YYYY-MM-DD).
+Takes the input csv file through user input (should enter with .csv extension e.g. "stocks.csv")
 
-Date, Open, High, Low, Close, Volume, Symbol.
+Key Features:
 
-CSV File Import
-Reads stock data from a CSV file with the following columns (header required):
+Primary data structure: Red-Black Tree and List
 
-text
-date,open,high,low,close,volume,Name
-Dates must be in YYYY-MM-DD format for correct string comparison and search operations.
+Key: Stock symbol (Name) & Date (date) 
 
-Interactive Menu
-The program presents a console menu with 12 options:
+Value: Custom class containing stock data (date, open, high, low, close, volume)
 
-Search for a stock by symbol and date (exact match).
-Top 5 high-volume stocks using Bubble Sort (with execution time).
-Top 5 high-volume stocks using Selection Sort (with execution time).
-Top 5 high-volume stocks using Quick Sort (with execution time).
-Top 5 high-volume stocks using Merge Sort (with execution time).
-Min / Max opening price and average volume for a given stock symbol.
-Simple Moving Average (SMA) for a user-specified stock and window size (in days).
-Price trend (Upward/Downward) based on 5-day vs. 20-day moving averages.
-Average volume for a stock over a user-defined date range.
-Top 5 highest opening price stocks on a specific date.
-Top 5 highest volume stocks on a specific date.
-Exit the program.
-Sorting Algorithm Performance
-Options 2–5 measure and display the time taken (in milliseconds) to sort the entire dataset by volume using each algorithm. This allows you to compare the efficiency of Bubble, Selection, Quick, and Merge Sort on real stock data.
+Input format: CSV file with headers (date,open,high,low,close,volume,Name)
 
-Data Structures
-Red-Black Tree
-The primary data structure for storing and retrieving stock records.
+Parse CSV files
 
-Key: symbol + "_" + date (e.g., AAL_2013-02-08).
+Search for a stock by symbol
 
-Value: StockData object containing all fields.
-Insertion and search operations are O(log n) in the average and worst case, ensuring good performance even with large datasets.
+Display basic statistics (min/max opening price, average volume)
 
-List
-After loading data, an in-order traversal of the tree populates an ArrayList<StockData> used for sorting and analysis.
+Implement bubble sort and selection sort
 
-Sorting Algorithms Implemented
-Algorithm	Method Name	Complexity (avg)	Stable
-Bubble Sort	bubbleSort()	O(n²)	Yes
-Selection Sort	selectionSort()	O(n²)	No
-Quick Sort	quickSort()	O(n log n)	No
-Merge Sort	mergeSort()	O(n log n)	Yes
-Each sort uses a Comparator to order by descending volume. Execution time is captured with System.currentTimeMillis() before and after sorting.
+The menu contains:
 
-How to Use
-Prerequisites
-Java Development Kit (JDK) 8 or higher.
+"
 
-A CSV file containing stock data with the format described below.
+Search for a stock by date and symbol (AAPL) - display all the fields for the stock when it has been found. If the stock is not found, display an error message.
 
-Compilation
-bash
-javac StockAnalysis.java
-Running the Program
-bash
-java StockAnalysis
-Instructions
-When prompted, enter the path to your CSV file (e.g., stocks.csv).
+Display the top 5 high volume stocks using bubble sort
 
-The program will load the data and display the main menu.
+Display the top 5 high volume stocks using selection sort
 
-Choose an option by typing the corresponding number and pressing Enter.
+Display the minimum opening price, maximum opening price, and average volume for a user specified stock symbol.
 
-Follow additional prompts (symbol, date, window size, etc.) as required.
+Display the top 5 high volume stocks using Quick sort
 
-Execution times for sorting algorithms are shown after each relevant option.
+Display the simple moving average for a user-specified stock
 
-Input File Format
-The CSV file must contain a header row.
+Display the price trend for a user-specified stock
 
-Columns: date,open,high,low,close,volume,Name
+Ask the user to specify the date range and a stock symbol. Display the average volume over that date range.
 
-Date format: YYYY-MM-DD (e.g., 2013-02-08).
-Note: The sample file stocks.csv uses M/D/YYYY; please convert dates to YYYY-MM-DD before use, or modify the code to parse the existing format.
+Display the top 5 highest volume items for a user specified day
 
-Missing numeric fields are handled (default to 0), but rows with an empty symbol are skipped.
+Display the top 5 highest opening price stocks for a user specified day
 
-Example
-After loading a properly formatted CSV, you might see:
+"
 
-text
-Stock Market Analysis System Menu
-1. Search for a stock by symbol and date
-2. Display top 5 high-volume stocks (Bubble Sort)
-...
-Please enter your choice:
-Sample Output (Option 2 - Bubble Sort)
-text
-The top 5 high-volume stocks (using Bubble Sort):
-Date: 2013-02-14, Open: $14.94, High: $14.96, Low: $13.16, Close: $13.99, Volume: 31879900, Symbol: AAL
-Date: 2013-02-15, Open: $13.93, High: $14.61, Low: $13.93, Close: $14.5, Volume: 15628000, Symbol: AAL
-Date: 2013-02-20, Open: $14.17, High: $14.26, Low: $13.15, Close: $13.33, Volume: 14725200, Symbol: AAL
-Date: 2013-03-06, Open: $14.52, High: $14.68, Low: $14.25, Close: $14.57, Volume: 13243200, Symbol: AAL
-Date: 2013-02-21, Open: $13.62, High: $13.95, Low: $12.9, Close: $13.37, Volume: 11922100, Symbol: AAL
-Bubble Sort time: 2 milliseconds
-Notes
-The Red-Black tree insertion includes a fix-up method to maintain balance.
+Implement the Quick Sort algorithm
 
-Sorting is performed on a copy of the original list to preserve the original order for subsequent operations.
+Calculate simple moving averages
 
-Date comparisons are done lexicographically (string comparison) and therefore require the YYYY-MM-DD format to work correctly.
+Find price trends (upward / downward depending on short term moving average over 5-days and long term moving average over 20-days).
 
-The program exits gracefully when option 12 is selected.
-
-Possible Enhancements
-Add support for different date formats (e.g., using SimpleDateFormat).
-
-Implement additional comparators (e.g., by opening price, closing price).
-
-Export sorted results to a file.
-
-Use multithreading for sorting performance tests.
-
-This project was developed as part of a data structures and algorithms course to demonstrate the use of Red-Black trees and sorting algorithm analysis.
+Add date range filtering capability and calculate average volume over that time frame
 
 
+Implement the Merge Sort algorithm
+
+Implement custom comparators for different sorting criteria, such as
+sort the data based on the highest volume - show top 5 items
+sort the data based on the highest opening price - show top 5 items
+
+Perform comprehensive time complexity sorting analysis on the 4 sorting algorithms with the data and with various comparators
+
+Time Analysis Files:
+My own results based on all of the stock CSV file have been provided, and an option is given in the menu to sort the data with the different sorting algorithms displaying the time each takes for your own analysis.
